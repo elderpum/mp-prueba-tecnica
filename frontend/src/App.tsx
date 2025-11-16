@@ -9,6 +9,7 @@ import FiscaliaForm from './components/FiscaliaForm';
 import CasosList from './components/CasosList';
 import CasoForm from './components/CasoForm';
 import LogsReasignacionList from './components/LogsReasignacionList';
+import BitacorasCasoList from './components/BitacorasCasoList';
 import NotFound from './components/NotFound';
 import { useAuth } from './hooks/useAuth';
 import { apiService } from './services/api';
@@ -98,6 +99,7 @@ function App() {
           <Route path="/casos/editar/:id" element={<CasoForm />} />
           <Route path="/casos/detalle/:id" element={<CasoForm />} />
           <Route path="/logs-reasignacion" element={<LogsReasignacionList />} />
+          <Route path="/bitacoras" element={<BitacorasCasoList />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="*" element={<Navigate to="/404" replace />} />
