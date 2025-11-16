@@ -30,5 +30,18 @@ services:
       - database
     restart: unless-stopped
 
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # URL del backend API (usar localhost con el puerto expuesto para acceso desde el navegador)
+        - VITE_API_URL=${API_URL:-http://localhost:${PORT}}
+    container_name: mp-frontend
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
 volumes:
   sqlserver_data:
