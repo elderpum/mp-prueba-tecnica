@@ -1,4 +1,5 @@
 import { getConnection, sql } from '../config/database';
+import bcrypt from 'bcryptjs';
 
 export interface IFiscalLogin {
     id: number;
@@ -16,10 +17,10 @@ export class Auth {
         const pool = await getConnection();
 
         try {
-            // Buscar fiscal por email usando el SP existente
+            // Buscar fiscal por email usando el SP específico para autenticación
             const result = await pool.request()
                 .input('email', sql.NVarChar(255), email)
-                .execute('SP_Fiscal_Get');
+                .execute('SP_Fiscal_GetForAuth');
 
             if (result.recordset.length === 0) {
                 return null;
@@ -32,6 +33,19 @@ export class Auth {
                 throw new Error('Usuario desactivado');
             }
 
+            // Verificar que la contraseña exista
+            if (!fiscal.password) {
+                console.error('Password no encontrado para el usuario:', email);
+                return null;
+            }
+
+            // Verificar contraseña con bcrypt
+            const passwordMatch = await bcrypt.compare(password, fiscal.password);
+            if (!passwordMatch) {
+                return null;
+            }
+
+            // Retornar el fiscal
             return fiscal;
         } catch (error) {
             console.error('Error en verificarCredenciales:', error);

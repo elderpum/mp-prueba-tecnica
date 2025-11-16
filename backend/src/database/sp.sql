@@ -92,6 +92,18 @@ BEGIN
 END
 GO
 
+-- SP para Autenticación (incluye password para verificación)
+CREATE OR ALTER PROCEDURE SP_Fiscal_GetForAuth
+    @email NVARCHAR(255)
+AS
+BEGIN
+    SELECT 
+        id, nombre, email, password, rol, estado, fechaCreacion, FiscaliaId
+    FROM Fiscal
+    WHERE email = @email;
+END
+GO
+
 -- SP para obtener Fiscal por Id
 CREATE OR ALTER PROCEDURE SP_Fiscal_GetById
     @id INT

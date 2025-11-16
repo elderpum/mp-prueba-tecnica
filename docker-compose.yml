@@ -35,7 +35,7 @@ services:
       context: ./frontend
       args:
         # URL del backend API (usar localhost con el puerto expuesto para acceso desde el navegador)
-        - VITE_API_URL=${API_URL:-http://localhost:${PORT}}
+        - VITE_API_URL=${API_URL:-http://localhost:${PORT}/api}
     container_name: mp-frontend
     ports:
       - "${FRONTEND_PORT:-3000}:80"
