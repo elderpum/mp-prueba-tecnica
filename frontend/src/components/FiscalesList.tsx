@@ -65,7 +65,7 @@ export default function FiscalesList() {
                 showNewButton={true}
                 newButtonRoute="/fiscales/nuevo"
                 newButtonText="Nuevo Fiscal"
-                detailRoute="/fiscales"
+                detailRoute="/fiscales/detalle"
                 showSearch={true}
                 searchFields={['nombre', 'email', 'rol']}
                 showPagination={true}

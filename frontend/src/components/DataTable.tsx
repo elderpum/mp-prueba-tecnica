@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useDataTable } from '../hooks/useDataTable';
 import type { TableConfig } from '../types/dataTable';
 import './DataTable.css';
@@ -10,6 +12,7 @@ interface DataTableProps<T = any> extends TableConfig<T> {
 }
 
 export default function DataTable<T = any>(props: DataTableProps<T>) {
+    const location = useLocation();
     const navigate = props.navigate || ((path: string) => {
         window.location.href = path;
     });
@@ -22,7 +25,13 @@ export default function DataTable<T = any>(props: DataTableProps<T>) {
         totalPages,
         handleSearch,
         handlePageChange,
+        refresh,
     } = useDataTable<T>(props);
+
+    // Recargar datos cada vez que cambia la ubicación (navegación a esta ruta)
+    useEffect(() => {
+        refresh();
+    }, [location.pathname, refresh]);
 
     const handleRowClick = (row: T) => {
         if (props.onRowClick) {
