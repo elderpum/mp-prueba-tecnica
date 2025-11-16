@@ -1,7 +1,10 @@
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useNavigation, type NavigationItem } from '../hooks/useNavigation';
 import './Sidebar.css';
 
 export default function Sidebar() {
+    const navigate = useNavigate();
+    const location = useLocation();
     const { items, toggleDropdown, isDropdownOpen } = useNavigation();
 
     const renderNavItem = (item: NavigationItem, level: number = 0) => {
@@ -43,14 +46,16 @@ export default function Sidebar() {
         }
 
         // Link type
+        const isActive = item.route && location.pathname === item.route;
         return (
             <a
                 key={item.label}
                 href={item.route || '#'}
-                className={`nav-item nav-link ${level > 0 ? 'nav-sub-item' : ''}`}
+                className={`nav-item nav-link ${level > 0 ? 'nav-sub-item' : ''} ${isActive ? 'active' : ''}`}
                 onClick={(e) => {
-                    if (!item.route || item.route === '#') {
-                        e.preventDefault();
+                    e.preventDefault();
+                    if (item.route && item.route !== '#') {
+                        navigate(item.route);
                     }
                 }}
             >

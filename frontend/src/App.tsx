@@ -1,6 +1,8 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Home from './components/Home';
 import Sidebar from './components/Sidebar';
+import FiscalesList from './components/FiscalesList';
 import { useAuth } from './hooks/useAuth';
 import { apiService } from './services/api';
 import './App.css';
@@ -74,7 +76,11 @@ function App() {
           </div>
         </nav>
 
-        <Home userName={user?.nombre} userRole={user?.rol} />
+        <Routes>
+          <Route path="/home" element={<Home userName={user?.nombre} userRole={user?.rol} />} />
+          <Route path="/fiscales" element={<FiscalesList />} />
+          <Route path="/" element={<Navigate to="/home" replace />} />
+        </Routes>
       </div>
     </div>
   );
