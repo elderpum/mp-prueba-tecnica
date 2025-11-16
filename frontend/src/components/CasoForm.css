@@ -50,3 +50,19 @@
     cursor: not-allowed;
 }
 
+.caso-estado-actions {
+    margin-top: 1.5rem;
+}
+
+.caso-estado-actions .card {
+    border: 1px solid #dee2e6;
+}
+
+.caso-estado-actions .card-header {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.caso-estado-actions .btn {
+    min-width: 180px;
+}
+

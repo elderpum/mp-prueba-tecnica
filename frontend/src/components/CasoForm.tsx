@@ -215,6 +215,33 @@ export default function CasoForm() {
         }
     };
 
+    // Cambiar estado del caso
+    const handleCambiarEstado = async (nuevoEstado: string) => {
+        if (!id) return;
+
+        setLoading(true);
+        try {
+            const result = await casosService.actualizarCaso(parseInt(id), {
+                estado: nuevoEstado,
+                fechaActualizacion: new Date().toISOString(),
+            });
+
+            if (result.success) {
+                // Actualizar el estado local
+                setCaso({ ...caso, estado: nuevoEstado });
+                setEstadoOriginal(nuevoEstado);
+                alert(`Estado del caso actualizado a "${nuevoEstado}" correctamente`);
+            } else {
+                alert(result.message || 'Error al cambiar el estado del caso');
+            }
+        } catch (error) {
+            alert('Error al cambiar el estado del caso');
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="caso-form-container">
             <div className="caso-form-header">
@@ -313,6 +340,75 @@ export default function CasoForm() {
                                 {errors.prioridad && <div className="invalid-feedback">{errors.prioridad}</div>}
                             </div>
                         </div>
+
+                        {/* Botones de cambio de estado */}
+                        {(modoEdicion || modoDetalle) && caso.estado && (
+                            <div className="caso-estado-actions mb-4">
+                                <div className="card">
+                                    <div className="card-header bg-light">
+                                        <h5 className="mb-0">
+                                            <i className="fas fa-exchange-alt me-2"></i>
+                                            Cambiar Estado del Caso
+                                        </h5>
+                                    </div>
+                                    <div className="card-body">
+                                        {caso.estado === 'Pendiente' && (
+                                            <button
+                                                type="button"
+                                                className="btn btn-info"
+                                                onClick={() => handleCambiarEstado('EnProgreso')}
+                                                disabled={loading}
+                                            >
+                                                <i className="fas fa-play me-2"></i>
+                                                Solicitar Progreso de Caso
+                                            </button>
+                                        )}
+
+                                        {caso.estado === 'EnProgreso' && (
+                                            <>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success me-2"
+                                                    onClick={() => handleCambiarEstado('Cerrado')}
+                                                    disabled={loading}
+                                                >
+                                                    <i className="fas fa-check-circle me-2"></i>
+                                                    Cerrar Caso
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-warning"
+                                                    onClick={() => handleCambiarEstado('Pendiente')}
+                                                    disabled={loading}
+                                                >
+                                                    <i className="fas fa-undo me-2"></i>
+                                                    Regresar a Pendiente
+                                                </button>
+                                            </>
+                                        )}
+
+                                        {caso.estado === 'Cerrado' && (
+                                            <button
+                                                type="button"
+                                                className="btn btn-secondary"
+                                                onClick={() => handleCambiarEstado('Archivado')}
+                                                disabled={loading}
+                                            >
+                                                <i className="fas fa-archive me-2"></i>
+                                                Archivar Caso
+                                            </button>
+                                        )}
+
+                                        {caso.estado === 'Archivado' && (
+                                            <p className="text-muted mb-0">
+                                                <i className="fas fa-info-circle me-2"></i>
+                                                Este caso está archivado y no puede cambiar de estado.
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
 
                         <div className="caso-form-actions">
                             <button
