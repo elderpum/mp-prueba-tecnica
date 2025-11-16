@@ -4,6 +4,8 @@ import Home from './components/Home';
 import Sidebar from './components/Sidebar';
 import FiscalesList from './components/FiscalesList';
 import FiscalForm from './components/FiscalForm';
+import FiscaliasList from './components/FiscaliasList';
+import FiscaliaForm from './components/FiscaliaForm';
 import NotFound from './components/NotFound';
 import { useAuth } from './hooks/useAuth';
 import { apiService } from './services/api';
@@ -84,6 +86,10 @@ function App() {
           <Route path="/fiscales/nuevo" element={<FiscalForm />} />
           <Route path="/fiscales/editar/:id" element={<FiscalForm />} />
           <Route path="/fiscales/detalle/:id" element={<FiscalForm />} />
+          <Route path="/fiscalias" element={<FiscaliasList />} />
+          <Route path="/fiscalias/nuevo" element={<FiscaliaForm />} />
+          <Route path="/fiscalias/editar/:id" element={<FiscaliaForm />} />
+          <Route path="/fiscalias/detalle/:id" element={<FiscaliaForm />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="*" element={<Navigate to="/404" replace />} />

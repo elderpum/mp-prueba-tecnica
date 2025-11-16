@@ -71,9 +71,9 @@ export class FiscaliaController {
         try {
             const { id } = req.params;
             await Fiscalia.delete(parseInt(id));
-            res.send({ message: 'Fiscalía eliminada correctamente' });
+            res.send({ message: 'Fiscalía desactivada correctamente' });
         } catch (error) {
-            res.status(500).send({ message: 'Error al eliminar la fiscalía', error });
+            res.status(500).send({ message: 'Error al desactivar la fiscalía', error });
         }
     }
 }

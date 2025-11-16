@@ -21,6 +21,6 @@ FiscaliaRoute.put('/:id', auth.autenticarToken, function (req, res) {
     controller.actualizarRegistro(req, res);
 });
 
-FiscaliaRoute.put('/:id', auth.autenticarToken, function (req, res) {
+FiscaliaRoute.delete('/:id', auth.autenticarToken, function (req, res) {
     controller.eliminarRegistro(req, res);
 });
