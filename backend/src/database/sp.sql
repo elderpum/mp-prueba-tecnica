@@ -6,7 +6,7 @@ CREATE OR ALTER PROCEDURE SP_Fiscalia_Get
 AS
 BEGIN
     SELECT
-        id, nombre, estado, direccion, estado, telefono, fechaCreacion
+        id, nombre, estado, direccion, telefono, fechaCreacion
     FROM Fiscalia
     WHERE (@id IS NULL OR id = @id)
         AND (@nombre IS NULL OR nombre = @nombre)
@@ -21,7 +21,7 @@ CREATE OR ALTER PROCEDURE SP_Fiscalia_GetById
 AS
 BEGIN
     SELECT
-        id, nombre, estado, direccion, estado, telefono, fechaCreacion
+        id, nombre, estado, direccion, telefono, fechaCreacion
     FROM Fiscalia
     WHERE id = @id;
 END

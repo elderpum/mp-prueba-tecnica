@@ -134,12 +134,12 @@ GO
 -- =============================================
 IF NOT EXISTS (SELECT * FROM Fiscalia)
 BEGIN
-    INSERT INTO Fiscalia (nombre, direccion, telefono) VALUES 
-    ('Fiscalía Central Metropolitana', '6a. avenida 6-45, zona 1, Guatemala City', '2250-5000'),
-    ('Fiscalía Distrital de Mixco', '8a. calle 7-32, zona 2, Mixco', '2250-5001'),
-    ('Fiscalía de Delitos Económicos', '5a. avenida 8-90, zona 10, Guatemala City', '2250-5002'),
-    ('Fiscalía de Narcotráfico', '12 calle 1-25, zona 1, Guatemala City', '2250-5003'),
-    ('Fiscalía de Secuestros', '15 avenida 2-45, zona 13, Guatemala City', '2250-5004');
+    INSERT INTO Fiscalia (nombre, direccion, telefono, estado) VALUES 
+    ('Fiscalía Central Metropolitana', '6a. avenida 6-45, zona 1, Guatemala City', '2250-5000', 1),
+    ('Fiscalía Distrital de Mixco', '8a. calle 7-32, zona 2, Mixco', '2250-5001', 1),
+    ('Fiscalía de Delitos Económicos', '5a. avenida 8-90, zona 10, Guatemala City', '2250-5002', 1),
+    ('Fiscalía de Narcotráfico', '12 calle 1-25, zona 1, Guatemala City', '2250-5003', 1),
+    ('Fiscalía de Secuestros', '15 avenida 2-45, zona 13, Guatemala City', '2250-5004', 1);
     
     PRINT 'Datos de Fiscalías insertados';
 END
