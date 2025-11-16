@@ -7,18 +7,18 @@ const getApiUrl = (): string => {
 
 const API_BASE_URL = getApiUrl();
 
-export interface Fiscal {
+export interface Caso {
     id: number;
-    nombre: string;
-    email: string;
-    password?: string;
-    rol: string;
-    estado: boolean;
-    fechaCreacion: string | null;
-    FiscaliaId: number;
+    titulo: string;
+    descripcion?: string;
+    fechaCreacion: string;
+    fechaActualizacion: string;
+    estado: string; // Pendiente, EnProgreso, Cerrado, Archivado
+    prioridad: string; // Alta, Media, Baja
+    FiscalId: number;
 }
 
-class FiscalesService {
+class CasosService {
     private getAuthToken(): string | null {
         return localStorage.getItem('token');
     }
@@ -36,10 +36,16 @@ class FiscalesService {
         return headers;
     }
 
-    async obtenerFiscales(estado?: boolean): Promise<{ success: boolean; data?: Fiscal[]; count?: number; message?: string }> {
+    async obtenerCasos(fiscalId?: number, estado?: string): Promise<{ success: boolean; data?: Caso[]; count?: number; message?: string }> {
         try {
-            const params = estado !== undefined ? `?estado=${estado}` : '';
-            const response = await fetch(`${API_BASE_URL}/fiscales${params}`, {
+            const params = new URLSearchParams();
+            if (fiscalId !== undefined) params.append('fiscalId', fiscalId.toString());
+            if (estado) params.append('estado', estado);
+            
+            const queryString = params.toString();
+            const url = queryString ? `${API_BASE_URL}/casos?${queryString}` : `${API_BASE_URL}/casos`;
+            
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: this.getHeaders(),
             });
@@ -58,13 +64,17 @@ class FiscalesService {
         }
     }
 
-    async obtenerFiscalPorId(id: number): Promise<{ success: boolean; data?: Fiscal; message?: string }> {
+    async obtenerCasoPorId(id: number): Promise<{ success: boolean; data?: Caso; message?: string }> {
         try {
-            const response = await fetch(`${API_BASE_URL}/fiscales/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/casos/${id}`, {
                 method: 'GET',
                 headers: this.getHeaders(),
             });
 
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
+            }
+
             const result = await response.json();
             return result;
         } catch (error) {
@@ -75,13 +85,17 @@ class FiscalesService {
         }
     }
 
-    async crearFiscal(fiscal: Omit<Fiscal, 'id'>): Promise<{ success: boolean; message?: string; data?: any }> {
+    async crearCaso(caso: Omit<Caso, 'id'>): Promise<{ success: boolean; message?: string; data?: any }> {
         try {
-            const response = await fetch(`${API_BASE_URL}/fiscales`, {
+            const response = await fetch(`${API_BASE_URL}/casos`, {
                 method: 'POST',
                 headers: this.getHeaders(),
-                body: JSON.stringify(fiscal),
+                body: JSON.stringify(caso),
             });
+
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
+            }
 
             const result = await response.json();
             return result;
@@ -93,13 +107,17 @@ class FiscalesService {
         }
     }
 
-    async actualizarFiscal(id: number, fiscal: Partial<Fiscal>): Promise<{ success: boolean; message?: string }> {
+    async actualizarCaso(id: number, caso: Partial<Caso>): Promise<{ success: boolean; message?: string }> {
         try {
-            const response = await fetch(`${API_BASE_URL}/fiscales/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/casos/${id}`, {
                 method: 'PUT',
                 headers: this.getHeaders(),
-                body: JSON.stringify(fiscal),
+                body: JSON.stringify(caso),
             });
+
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
+            }
 
             const result = await response.json();
             return result;
@@ -111,15 +129,18 @@ class FiscalesService {
         }
     }
 
-    async eliminarFiscal(id: number): Promise<{ success: boolean; message?: string }> {
+    async eliminarCaso(id: number): Promise<{ success: boolean; message?: string }> {
         try {
-            const response = await fetch(`${API_BASE_URL}/fiscales/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/casos/${id}`, {
                 method: 'DELETE',
                 headers: this.getHeaders(),
             });
 
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
+            }
+
             const result = await response.json();
-            console.log(result);
             return result;
         } catch (error) {
             return {
@@ -128,8 +149,7 @@ class FiscalesService {
             };
         }
     }
-
 }
 
-export const fiscalesService = new FiscalesService();
+export const casosService = new CasosService();
 
