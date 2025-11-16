@@ -3,8 +3,21 @@
 /* ===== ESTILOS ESPECÍFICOS DE LA APLICACIÓN ===== */
 
 .app-container {
+  display: flex;
   min-height: 100vh;
   background-color: #f8f9fa;
+}
+
+.app-content {
+  margin-left: 260px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.navbar {
+  flex-shrink: 0;
 }
 
 .navbar-brand {
@@ -17,4 +30,10 @@
 
 .dropdown-item:hover {
   background-color: var(--primary-very-light);
+}
+
+/* Ajuste para el contenido principal */
+.app-content > *:not(.navbar) {
+  flex: 1;
+  overflow-y: auto;
 }
