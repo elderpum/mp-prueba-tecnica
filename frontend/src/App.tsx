@@ -3,6 +3,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Sidebar from './components/Sidebar';
 import FiscalesList from './components/FiscalesList';
+import NotFound from './components/NotFound';
 import { useAuth } from './hooks/useAuth';
 import { apiService } from './services/api';
 import './App.css';
@@ -79,7 +80,9 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home userName={user?.nombre} userRole={user?.rol} />} />
           <Route path="/fiscales" element={<FiscalesList />} />
+          <Route path="/404" element={<NotFound />} />
           <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
       </div>
     </div>
