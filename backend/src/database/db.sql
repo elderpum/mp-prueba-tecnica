@@ -199,15 +199,15 @@ BEGIN
     (5, 'Amenazas por redes sociales', 'Amenazas de muerte mediante plataformas digitales. Evidencia digital recolectada.', 'Pendiente', 'Media'),
     
     -- Casos Fiscalía 3
-    (6, 'Estafa financiera', 'Empresa de inversiones fraudulentas. Pérdidas estimadas de Q500,000.00', 'EnProgreso', 'Alta'),
-    (7, 'Lavado de dinero', 'Red de lavado a través de comercios ficticios. Investigación en coordinación con SAT.', 'Pendiente', 'Alta'),
+    (1, 'Estafa financiera', 'Empresa de inversiones fraudulentas. Pérdidas estimadas de Q500,000.00', 'EnProgreso', 'Alta'),
+    (2, 'Lavado de dinero', 'Red de lavado a través de comercios ficticios. Investigación en coordinación con SAT.', 'Pendiente', 'Alta'),
     
     -- Casos Fiscalía 4
-    (8, 'Tráfico de sustancias', 'Incautación de 50 kg de cocaína en operativo fronterizo. Caso de alta prioridad nacional.', 'EnProgreso', 'Alta'),
+    (3, 'Tráfico de sustancias', 'Incautación de 50 kg de cocaína en operativo fronterizo. Caso de alta prioridad nacional.', 'EnProgreso', 'Alta'),
     
     -- Casos Fiscalía 5
-    (9, 'Secuestro express', 'Privación de libertad por 24 horas con fines de extorsión. Víctima liberada tras pago.', 'Cerrado', 'Alta'),
-    (9, 'Desaparición forzada', 'Persona desaparecida hace 72 horas. Se activaron protocolos de búsqueda inmediata.', 'EnProgreso', 'Alta');
+    (4, 'Secuestro express', 'Privación de libertad por 24 horas con fines de extorsión. Víctima liberada tras pago.', 'Cerrado', 'Alta'),
+    (5, 'Desaparición forzada', 'Persona desaparecida hace 72 horas. Se activaron protocolos de búsqueda inmediata.', 'EnProgreso', 'Alta');
     
     PRINT 'Datos de Casos insertados';
 END
@@ -227,8 +227,8 @@ BEGIN
     (1, 1, 'Actualizacion', 'Se agregó evidencia de cámaras de seguridad'),
     (2, 2, 'Creacion', 'Caso creado por denuncia múltiple'),
     (2, 2, 'CambioEstado', 'Caso cambiado a EnProgreso - Inicio de investigación'),
-    (9, 9, 'Creacion', 'Caso de secuestro express creado'),
-    (9, 9, 'CambioEstado', 'Caso cerrado - Sentencia emitida');
+    (9, 4, 'Creacion', 'Caso de secuestro express creado'),
+    (9, 4, 'CambioEstado', 'Caso cerrado - Sentencia emitida');
     
     PRINT 'Datos de BitacoraCaso insertados';
 END
