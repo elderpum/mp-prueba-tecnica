@@ -155,25 +155,25 @@ GO
 -- =============================================
 IF NOT EXISTS (SELECT * FROM Fiscal)
 BEGIN
-    INSERT INTO Fiscal (FiscaliaId, nombre, email, password, rol) VALUES 
+    INSERT INTO Fiscal (FiscaliaId, nombre, email, password, rol, estado) VALUES 
     -- Fiscalía 1
-    (1, 'Juan Pérez García', 'juan.perez@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal'),
-    (1, 'María López Hernández', 'maria.lopez@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal Jefe'),
-    (1, 'Carlos Mendoza Ruiz', 'carlos.mendoza@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal'),
+    (1, 'Juan Pérez García', 'juan.perez@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal', 1),
+    (1, 'María López Hernández', 'maria.lopez@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal Jefe', 1),
+    (1, 'Carlos Mendoza Ruiz', 'carlos.mendoza@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal', 1),
     
     -- Fiscalía 2
-    (2, 'Ana Martínez Díaz', 'ana.martinez@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal'),
-    (2, 'Luis García Torres', 'luis.garcia@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal Jefe'),
+    (2, 'Ana Martínez Díaz', 'ana.martinez@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal', 1),
+    (2, 'Luis García Torres', 'luis.garcia@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal Jefe', 1),
     
     -- Fiscalía 3
-    (3, 'Sofía Ramírez López', 'sofia.ramirez@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal'),
-    (3, 'Miguel Ángel Castillo', 'miguel.castillo@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal'),
+    (3, 'Sofía Ramírez López', 'sofia.ramirez@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal', 1),
+    (3, 'Miguel Ángel Castillo', 'miguel.castillo@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal', 1),
     
     -- Fiscalía 4
-    (4, 'Elena Morales Santos', 'elena.morales@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal Jefe'),
+    (4, 'Elena Morales Santos', 'elena.morales@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal Jefe', 1),
     
     -- Fiscalía 5
-    (5, 'Roberto Jiménez Paz', 'roberto.jimenez@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal Jefe');
+    (5, 'Roberto Jiménez Paz', 'roberto.jimenez@mp.gt', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Fiscal Jefe', 1);
     
     PRINT 'Datos de Fiscales insertados';
 END

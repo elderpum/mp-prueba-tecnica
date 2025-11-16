@@ -76,6 +76,7 @@ GO
 -- SP para Obtener Fiscales
 CREATE OR ALTER PROCEDURE SP_Fiscal_Get
     @id INT = NULL,
+    @email NVARCHAR(255) = NULL,
     @fiscaliaId INT = NULL,
     @estado BIT = NULL
 AS
@@ -84,6 +85,7 @@ BEGIN
         id, nombre, email, rol, estado, fechaCreacion, FiscaliaId
     FROM Fiscal
     WHERE (@id IS NULL OR id = @id)
+        AND (@email IS NULL OR email = @email)
         AND (@fiscaliaId IS NULL OR FiscaliaId = @fiscaliaId)
         AND (@estado IS NULL OR estado = @estado)
     ORDER BY nombre;
