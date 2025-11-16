@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import bcrypt from 'bcryptjs';
 import { Fiscal, IFiscal } from '../models/Fiscal';
 
 export class FiscalController {
@@ -67,6 +68,10 @@ export class FiscalController {
                 return;
             }
 
+            // Hashear la contraseña antes de guardarla
+            const hashedPassword = await bcrypt.hash(fiscalData.password, 10);
+            fiscalData.password = hashedPassword;
+
             const result = await Fiscal.create(fiscalData);
 
             res.status(201).send({
@@ -87,7 +92,14 @@ export class FiscalController {
     async actualizarRegistro(req: Request, res: Response): Promise<void> {
         try {
             const { id } = req.params;
-            await Fiscal.update(parseInt(id), req.body);
+            const updateData = { ...req.body };
+
+            // Si se proporciona una nueva contraseña, hashearla antes de actualizar
+            if (updateData.password) {
+                updateData.password = await bcrypt.hash(updateData.password, 10);
+            }
+
+            await Fiscal.update(parseInt(id), updateData);
 
             res.status(200).send({
                 success: true,
