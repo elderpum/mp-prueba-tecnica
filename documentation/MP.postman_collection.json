@@ -1,0 +1,1082 @@
+{
+	"info": {
+		"_postman_id": "350278f5-e38d-4e2c-94d5-9f8c2e91a760",
+		"name": "MP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14640423"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // Cambiar por datos reales\r\n    \"email\": \"admin\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlAPI}}/api/auth/login",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    // Cambiar por datos reales\r\n    \"email\": \"maria.lopez@mp.gt\",\r\n    \"password\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{urlAPI}}/api/auth/login",
+									"host": [
+										"{{urlAPI}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\r\n    \"success\": true,\r\n    \"message\": \"Login exitoso\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJtYXJpYS5sb3BlekBtcC5ndCIsIm5vbWJyZSI6Ik1hcsOtYSBMw7NwZXogSGVybsOhbmRleiIsInJvbCI6IkZpc2NhbCBKZWZlIiwiZmlzY2FsaWFJZCI6MSwiaWF0IjoxNzYzMzQ0OTYwLCJleHAiOjE3NjM0MzEzNjB9.PaxFFD0ERbViGEw9HCJRlJHeOIQ2_krAqCV-JThV0KQ\",\r\n    \"user\": {\r\n        \"id\": 2,\r\n        \"nombre\": \"María López Hernández\",\r\n        \"email\": \"maria.lopez@mp.gt\",\r\n        \"rol\": \"Fiscal Jefe\",\r\n        \"fiscaliaId\": 1\r\n    }\r\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Fiscales",
+			"item": [
+				{
+					"name": "Obtener Fiscales",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/fiscales/",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"fiscales",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{urlAPI}}/api/fiscales/",
+									"host": [
+										"{{urlAPI}}"
+									],
+									"path": [
+										"api",
+										"fiscales",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 4,\n            \"nombre\": \"Ana Martínez Díaz\",\n            \"email\": \"ana.martinez@mp.gt\",\n            \"rol\": \"Fiscal\",\n            \"estado\": true,\n            \"fechaCreacion\": null,\n            \"FiscaliaId\": 2\n        },\n        {\n            \"id\": 3,\n            \"nombre\": \"Carlos Mendoza Ruiz\",\n            \"email\": \"carlos.mendoza@mp.gt\",\n            \"rol\": \"Fiscal\",\n            \"estado\": true,\n            \"fechaCreacion\": null,\n            \"FiscaliaId\": 1\n        },\n        {\n            \"id\": 10,\n            \"nombre\": \"Elder Pum\",\n            \"email\": \"ElderPum@gmail.com\",\n            \"rol\": \"Fiscal Jefe\",\n            \"estado\": true,\n            \"fechaCreacion\": \"2025-11-16T18:00:03.293Z\",\n            \"FiscaliaId\": 1\n        },\n        {\n            \"id\": 8,\n            \"nombre\": \"Elena Morales Santos\",\n            \"email\": \"elena.morales@mp.gt\",\n            \"rol\": \"Fiscal Jefe\",\n            \"estado\": true,\n            \"fechaCreacion\": null,\n            \"FiscaliaId\": 4\n        },\n        {\n            \"id\": 1,\n            \"nombre\": \"Juan Pérez García\",\n            \"email\": \"juan.perez@mp.gt\",\n            \"rol\": \"Fiscal\",\n            \"estado\": true,\n            \"fechaCreacion\": null,\n            \"FiscaliaId\": 1\n        },\n        {\n            \"id\": 5,\n            \"nombre\": \"Luis García Torres\",\n            \"email\": \"luis.garcia@mp.gt\",\n            \"rol\": \"Fiscal Jefe\",\n            \"estado\": true,\n            \"fechaCreacion\": null,\n            \"FiscaliaId\": 2\n        },\n        {\n            \"id\": 2,\n            \"nombre\": \"María López Hernández\",\n            \"email\": \"maria.lopez@mp.gt\",\n            \"rol\": \"Fiscal Jefe\",\n            \"estado\": true,\n            \"fechaCreacion\": null,\n            \"FiscaliaId\": 1\n        },\n        {\n            \"id\": 7,\n            \"nombre\": \"Miguel Ángel Castillo\",\n            \"email\": \"miguel.castillo@mp.gt\",\n            \"rol\": \"Fiscal\",\n            \"estado\": true,\n            \"fechaCreacion\": null,\n            \"FiscaliaId\": 3\n        },\n        {\n            \"id\": 11,\n            \"nombre\": \"Miguel Salguedo\",\n            \"email\": \"msalguedo@mp.gob\",\n            \"rol\": \"Fiscal\",\n            \"estado\": true,\n            \"fechaCreacion\": \"2025-11-16T23:16:40.950Z\",\n            \"FiscaliaId\": 6\n        },\n        {\n            \"id\": 9,\n            \"nombre\": \"Roberto Jiménez Paz\",\n            \"email\": \"roberto.jimenez@mp.gt\",\n            \"rol\": \"Fiscal Jefe\",\n            \"estado\": true,\n            \"fechaCreacion\": null,\n            \"FiscaliaId\": 5\n        },\n        {\n            \"id\": 6,\n            \"nombre\": \"Sofía Ramírez López\",\n            \"email\": \"sofia.ramirez@mp.gt\",\n            \"rol\": \"Fiscal\",\n            \"estado\": true,\n            \"fechaCreacion\": null,\n            \"FiscaliaId\": 3\n        }\n    ],\n    \"count\": 11\n}"
+						}
+					]
+				},
+				{
+					"name": "Obtener Fiscal por Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/fiscales/1",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"fiscales",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{urlAPI}}/api/fiscales/1",
+									"host": [
+										"{{urlAPI}}"
+									],
+									"path": [
+										"api",
+										"fiscales",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"nombre\": \"Juan Pérez García\",\n        \"email\": \"juan.perez@mp.gt\",\n        \"rol\": \"Fiscal\",\n        \"estado\": true,\n        \"fechaCreacion\": null,\n        \"FiscaliaId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Crear Fiscal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Laura Sánchez Pérez\",\r\n  \"email\": \"laura.sanchez@mp.gt\",\r\n  \"password\": \"securePass456\",\r\n  \"rol\": \"Fiscal Jefe\",\r\n  \"estado\": true,\r\n  \"FiscaliaId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlAPI}}/api/fiscales/",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"fiscales",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Fiscal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Juan Pérez García\",\r\n    \"email\": \"juan.perez@mp.gt\",\r\n    \"rol\": \"Fiscal\",\r\n    \"estado\": true,\r\n    \"fechaCreacion\": null,\r\n    \"FiscaliaId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlAPI}}/api/fiscales/1",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"fiscales",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Fiscal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/fiscales/1",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"fiscales",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fiscalias",
+			"item": [
+				{
+					"name": "Obtener Fiscalias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/fiscalias/",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"fiscalias",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{urlAPI}}/api/fiscalias/",
+									"host": [
+										"{{urlAPI}}"
+									],
+									"path": [
+										"api",
+										"fiscalias",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 6,\n            \"nombre\": \"Fiscalía Auxiliar Loma Real\",\n            \"estado\": true,\n            \"direccion\": \"Lote 1, Col. Loma Real, zona 12\",\n            \"telefono\": \"2250-0000\",\n            \"fechaCreacion\": \"2025-11-16T12:41:07.370Z\"\n        },\n        {\n            \"id\": 1,\n            \"nombre\": \"Fiscalía Central Metropolitana\",\n            \"estado\": true,\n            \"direccion\": \"6a. avenida 6-45, zona 1, Ciudad de Guatemala\",\n            \"telefono\": \"2250-5000\",\n            \"fechaCreacion\": \"2025-11-16T12:30:33.683Z\"\n        },\n        {\n            \"id\": 7,\n            \"nombre\": \"Fiscalia de ciberseguridad\",\n            \"estado\": true,\n            \"direccion\": \"15 avenida 3-78 zona 1, Ciudad de Guatemala\",\n            \"telefono\": \"24570000\",\n            \"fechaCreacion\": \"2025-11-16T19:29:07.443Z\"\n        },\n        {\n            \"id\": 3,\n            \"nombre\": \"Fiscalía de Delitos Económicos\",\n            \"estado\": true,\n            \"direccion\": \"5a. avenida 8-90, zona 10, Guatemala City\",\n            \"telefono\": \"2250-5002\",\n            \"fechaCreacion\": \"2025-11-16T12:30:33.683Z\"\n        },\n        {\n            \"id\": 4,\n            \"nombre\": \"Fiscalía de Narcotráfico\",\n            \"estado\": true,\n            \"direccion\": \"12 calle 1-25, zona 1, Guatemala City\",\n            \"telefono\": \"2250-5003\",\n            \"fechaCreacion\": \"2025-11-16T12:30:33.683Z\"\n        },\n        {\n            \"id\": 5,\n            \"nombre\": \"Fiscalía de Secuestros\",\n            \"estado\": true,\n            \"direccion\": \"15 avenida 2-45, zona 13, Guatemala City\",\n            \"telefono\": \"2250-5004\",\n            \"fechaCreacion\": \"2025-11-16T12:30:33.683Z\"\n        },\n        {\n            \"id\": 2,\n            \"nombre\": \"Fiscalía Distrital de Mixco\",\n            \"estado\": true,\n            \"direccion\": \"8a. calle 7-32, zona 2, Mixco\",\n            \"telefono\": \"2250-5001\",\n            \"fechaCreacion\": \"2025-11-16T12:30:33.683Z\"\n        }\n    ],\n    \"count\": 7\n}"
+						}
+					]
+				},
+				{
+					"name": "Obtener Fiscalia por Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/fiscalias/1",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"fiscalias",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{urlAPI}}/api/fiscalias/1",
+									"host": [
+										"{{urlAPI}}"
+									],
+									"path": [
+										"api",
+										"fiscalias",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"nombre\": \"Fiscalía Central Metropolitana\",\n        \"estado\": true,\n        \"direccion\": \"6a. avenida 6-45, zona 1, Ciudad de Guatemala\",\n        \"telefono\": \"2250-5000\",\n        \"fechaCreacion\": \"2025-11-16T12:30:33.683Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Crear Fiscalia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Fiscalía de Delitos Ambientales\",\r\n  \"direccion\": \"10a. avenida 12-30, zona 10, Guatemala City\",\r\n  \"telefono\": \"2250-5005\",\r\n  \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlAPI}}/api/fiscalias/",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"fiscalias",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Fiscalia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Fiscalía Auxiliar Loma Real\",\r\n    \"estado\": true,\r\n    \"direccion\": \"Lote 1, Col. Loma Real, zona 12\",\r\n    \"telefono\": \"2250-0000\",\r\n    \"fechaCreacion\": \"2025-11-16T12:41:07.370Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlAPI}}/api/fiscalias/1",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"fiscalias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Fiscalia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/fiscalias/1",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"fiscalias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Casos",
+			"item": [
+				{
+					"name": "Obtener Casos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/casos/",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"casos",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{urlAPI}}/api/casos/",
+									"host": [
+										"{{urlAPI}}"
+									],
+									"path": [
+										"api",
+										"casos",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 11,\n            \"titulo\": \"Robo a mano armada - zona 12\",\n            \"descripcion\": \"Un robo se perpetró en las inmediaciones de la calzada Atanasio Tzul.\\n\\nSe sabe que los atacantes huyeron del lugar\",\n            \"fechaCreacion\": \"2025-11-17T00:06:34.590Z\",\n            \"fechaActualizacion\": \"2025-11-17T00:08:09.073Z\",\n            \"estado\": \"Archivado\",\n            \"prioridad\": \"Baja\",\n            \"FiscalId\": 10\n        },\n        {\n            \"id\": 1,\n            \"titulo\": \"Robo agravado en zona 1\",\n            \"descripcion\": \"Robo a mano armada en comercio de la zona 1. Se requiere investigación de cámaras de seguridad.\",\n            \"fechaCreacion\": null,\n            \"fechaActualizacion\": \"2025-11-16T22:53:18.480Z\",\n            \"estado\": \"Cerrado\",\n            \"prioridad\": \"Alta\",\n            \"FiscalId\": 1\n        },\n        {\n            \"id\": 2,\n            \"titulo\": \"Extorsión a comerciante\",\n            \"descripcion\": \"Cobro de renta ilegal a comerciantes del mercado central. Múltiples víctimas reportadas.\",\n            \"fechaCreacion\": null,\n            \"fechaActualizacion\": null,\n            \"estado\": \"EnProgreso\",\n            \"prioridad\": \"Alta\",\n            \"FiscalId\": 2\n        },\n        {\n            \"id\": 3,\n            \"titulo\": \"Hurto de vehículo\",\n            \"descripcion\": \"Sustracción de automóvil en estacionamiento público. Modelo Toyota Hilux 2022.\",\n            \"fechaCreacion\": null,\n            \"fechaActualizacion\": null,\n            \"estado\": \"Pendiente\",\n            \"prioridad\": \"Media\",\n            \"FiscalId\": 3\n        },\n        {\n            \"id\": 4,\n            \"titulo\": \"Violencia intrafamiliar\",\n            \"descripcion\": \"Caso de violencia doméstica con lesiones leves. Se requiere protección para la víctima.\",\n            \"fechaCreacion\": null,\n            \"fechaActualizacion\": null,\n            \"estado\": \"EnProgreso\",\n            \"prioridad\": \"Alta\",\n            \"FiscalId\": 4\n        },\n        {\n            \"id\": 5,\n            \"titulo\": \"Amenazas por redes sociales\",\n            \"descripcion\": \"Amenazas de muerte mediante plataformas digitales. Evidencia digital recolectada.\",\n            \"fechaCreacion\": null,\n            \"fechaActualizacion\": null,\n            \"estado\": \"Pendiente\",\n            \"prioridad\": \"Media\",\n            \"FiscalId\": 5\n        },\n        {\n            \"id\": 6,\n            \"titulo\": \"Estafa financiera\",\n            \"descripcion\": \"Empresa de inversiones fraudulentas. Pérdidas estimadas de Q500,000.00\",\n            \"fechaCreacion\": null,\n            \"fechaActualizacion\": null,\n            \"estado\": \"EnProgreso\",\n            \"prioridad\": \"Alta\",\n            \"FiscalId\": 1\n        },\n        {\n            \"id\": 7,\n            \"titulo\": \"Lavado de dinero\",\n            \"descripcion\": \"Red de lavado a través de comercios ficticios. Investigación en coordinación con SAT.\",\n            \"fechaCreacion\": null,\n            \"fechaActualizacion\": null,\n            \"estado\": \"Pendiente\",\n            \"prioridad\": \"Alta\",\n            \"FiscalId\": 2\n        },\n        {\n            \"id\": 8,\n            \"titulo\": \"Tráfico de sustancias\",\n            \"descripcion\": \"Incautación de 50 kg de cocaína en operativo fronterizo. Caso de alta prioridad nacional.\",\n            \"fechaCreacion\": null,\n            \"fechaActualizacion\": null,\n            \"estado\": \"EnProgreso\",\n            \"prioridad\": \"Alta\",\n            \"FiscalId\": 3\n        },\n        {\n            \"id\": 9,\n            \"titulo\": \"Secuestro express\",\n            \"descripcion\": \"Privación de libertad por 24 horas con fines de extorsión. Víctima liberada tras pago.\",\n            \"fechaCreacion\": null,\n            \"fechaActualizacion\": null,\n            \"estado\": \"Cerrado\",\n            \"prioridad\": \"Alta\",\n            \"FiscalId\": 4\n        },\n        {\n            \"id\": 10,\n            \"titulo\": \"Desaparición forzada\",\n            \"descripcion\": \"Persona desaparecida hace 72 horas. Se activaron protocolos de búsqueda inmediata.\",\n            \"fechaCreacion\": null,\n            \"fechaActualizacion\": null,\n            \"estado\": \"EnProgreso\",\n            \"prioridad\": \"Alta\",\n            \"FiscalId\": 5\n        }\n    ],\n    \"count\": 11\n}"
+						}
+					]
+				},
+				{
+					"name": "Obtener Caso por Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/casos/1",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"casos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{urlAPI}}/api/casos/1",
+									"host": [
+										"{{urlAPI}}"
+									],
+									"path": [
+										"api",
+										"casos",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"titulo\": \"Robo agravado en zona 1\",\n        \"descripcion\": \"Robo a mano armada en comercio de la zona 1. Se requiere investigación de cámaras de seguridad.\",\n        \"fechaCreacion\": null,\n        \"fechaActualizacion\": \"2025-11-16T22:53:18.480Z\",\n        \"estado\": \"Cerrado\",\n        \"prioridad\": \"Alta\",\n        \"FiscalId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Crear Caso",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"titulo\": \"Robo de vehículo en zona 10\",\r\n  \"descripcion\": \"Sustracción de vehículo marca Honda Civic 2020, color blanco, placa ABC-1234. Ocurrió en estacionamiento del centro comercial.\",\r\n  \"estado\": \"Pendiente\",\r\n  \"prioridad\": \"Alta\",\r\n  \"FiscalId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlAPI}}/api/casos/",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"casos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Caso",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"titulo\": \"Robo de vehículo en zona 10\",\r\n  \"descripcion\": \"Sustracción de vehículo marca Honda Civic 2020, color blanco, placa ABC-1234. Ocurrió en estacionamiento del centro comercial.\",\r\n  \"estado\": \"Pendiente\",\r\n  \"prioridad\": \"Alta\",\r\n  \"FiscalId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlAPI}}/api/casos/",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"casos",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bitácoras de Casos",
+			"item": [
+				{
+					"name": "Obtener Bitácoras de Casos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/bitacoras/",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"bitacoras",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{urlAPI}}/api/bitacoras/",
+									"host": [
+										"{{urlAPI}}"
+									],
+									"path": [
+										"api",
+										"bitacoras",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"success\": true,\r\n    \"data\": [\r\n        {\r\n            \"id\": 11,\r\n            \"CasoId\": 11,\r\n            \"FiscalId\": 10,\r\n            \"accion\": \"CambioEstado\",\r\n            \"descripcion\": \"Cambio de Estado en el caso. Por favor revisar\",\r\n            \"fechaAccion\": \"2025-11-17T00:08:08.193Z\"\r\n        },\r\n        {\r\n            \"id\": 10,\r\n            \"CasoId\": 11,\r\n            \"FiscalId\": 10,\r\n            \"accion\": \"CambioEstado\",\r\n            \"descripcion\": \"Cambio de Estado en el caso. Por favor revisar\",\r\n            \"fechaAccion\": \"2025-11-17T00:08:02.170Z\"\r\n        },\r\n        {\r\n            \"id\": 9,\r\n            \"CasoId\": 11,\r\n            \"FiscalId\": 10,\r\n            \"accion\": \"Actualizacion\",\r\n            \"descripcion\": \"Se actualizó información importante del caso. Por favor revisar\",\r\n            \"fechaAccion\": \"2025-11-17T00:07:41.407Z\"\r\n        },\r\n        {\r\n            \"id\": 8,\r\n            \"CasoId\": 11,\r\n            \"FiscalId\": 10,\r\n            \"accion\": \"CambioEstado\",\r\n            \"descripcion\": \"Cambio de Estado en el caso. Por favor revisar\",\r\n            \"fechaAccion\": \"2025-11-17T00:06:55.100Z\"\r\n        },\r\n        {\r\n            \"id\": 7,\r\n            \"CasoId\": 11,\r\n            \"FiscalId\": 10,\r\n            \"accion\": \"Creacion\",\r\n            \"descripcion\": \"Caso creado y asignado al fiscal\",\r\n            \"fechaAccion\": \"2025-11-17T00:06:34.607Z\"\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"CasoId\": 1,\r\n            \"FiscalId\": 1,\r\n            \"accion\": \"Creacion\",\r\n            \"descripcion\": \"Caso creado y asignado al fiscal\",\r\n            \"fechaAccion\": null\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"CasoId\": 1,\r\n            \"FiscalId\": 1,\r\n            \"accion\": \"Actualizacion\",\r\n            \"descripcion\": \"Se agregó evidencia de cámaras de seguridad\",\r\n            \"fechaAccion\": null\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"CasoId\": 2,\r\n            \"FiscalId\": 2,\r\n            \"accion\": \"Creacion\",\r\n            \"descripcion\": \"Caso creado por denuncia múltiple\",\r\n            \"fechaAccion\": null\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"CasoId\": 2,\r\n            \"FiscalId\": 2,\r\n            \"accion\": \"CambioEstado\",\r\n            \"descripcion\": \"Caso cambiado a EnProgreso - Inicio de investigación\",\r\n            \"fechaAccion\": null\r\n        },\r\n        {\r\n            \"id\": 5,\r\n            \"CasoId\": 9,\r\n            \"FiscalId\": 4,\r\n            \"accion\": \"Creacion\",\r\n            \"descripcion\": \"Caso de secuestro express creado\",\r\n            \"fechaAccion\": null\r\n        },\r\n        {\r\n            \"id\": 6,\r\n            \"CasoId\": 9,\r\n            \"FiscalId\": 4,\r\n            \"accion\": \"CambioEstado\",\r\n            \"descripcion\": \"Caso cerrado - Sentencia emitida\",\r\n            \"fechaAccion\": null\r\n        }\r\n    ],\r\n    \"count\": 11\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Obtener Bitácora por Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/bitacoras/1",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"bitacoras",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{urlAPI}}/api/bitacoras/1",
+									"host": [
+										"{{urlAPI}}"
+									],
+									"path": [
+										"api",
+										"bitacoras",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"id\": 1,\r\n        \"CasoId\": 1,\r\n        \"FiscalId\": 1,\r\n        \"accion\": \"Creacion\",\r\n        \"descripcion\": \"Caso creado y asignado al fiscal\",\r\n        \"fechaAccion\": null\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Crear Bitácora",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"CasoId\": 1,\r\n  \"FiscalId\": 1,\r\n  \"accion\": \"CambioEstado\",\r\n  \"descripcion\": \"Caso movido de Pendiente a EnProgreso - Inicio de investigación formal\",\r\n  \"fechaAccion\": \"2024-01-15T11:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlAPI}}/api/bitacoras/",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"bitacoras",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logs de Reasignación Fallidos",
+			"item": [
+				{
+					"name": "Obtener Logs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/logs-reasignacion/",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"logs-reasignacion",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{urlAPI}}/api/logs-reasignacion/",
+									"host": [
+										"{{urlAPI}}"
+									],
+									"path": [
+										"api",
+										"logs-reasignacion",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"success\": true,\r\n    \"data\": [\r\n        {\r\n            \"id\": 2,\r\n            \"CasoId\": 11,\r\n            \"FiscalOrigenId\": 10,\r\n            \"FiscalDestinoId\": 8,\r\n            \"motivoBloqueo\": \"El caso no puede ser reasignado porque su estado es \\\"EnProgreso\\\". Solo los casos con estado \\\"Pendiente\\\" pueden ser reasignados.\",\r\n            \"fechaIntento\": \"2025-11-17T00:07:18.587Z\"\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"CasoId\": 1,\r\n            \"FiscalOrigenId\": 1,\r\n            \"FiscalDestinoId\": 4,\r\n            \"motivoBloqueo\": \"El caso no puede ser reasignado porque el fiscal de destino pertenece a una fiscalía diferente. Fiscal origen: Fiscalía ID 1, Fiscal destino: Fiscalía ID 2.\",\r\n            \"fechaIntento\": \"2025-11-16T22:28:25.153Z\"\r\n        }\r\n    ],\r\n    \"count\": 2\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Obtener Log por Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlAPI}}/api/logs-reasignacion/1",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"logs-reasignacion",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Obtener Log por Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{urlAPI}}/api/logs-reasignacion/1",
+									"host": [
+										"{{urlAPI}}"
+									],
+									"path": [
+										"api",
+										"logs-reasignacion",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"CasoId\": 1,\n        \"FiscalOrigenId\": 1,\n        \"FiscalDestinoId\": 4,\n        \"motivoBloqueo\": \"El caso no puede ser reasignado porque el fiscal de destino pertenece a una fiscalía diferente. Fiscal origen: Fiscalía ID 1, Fiscal destino: Fiscalía ID 2.\",\n        \"fechaIntento\": \"2025-11-16T22:28:25.153Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Crear Log",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"CasoId\": 1,\r\n  \"FiscalOrigenId\": 1,\r\n  \"FiscalDestinoId\": 5,\r\n  \"motivoBloqueo\": \"El caso no puede ser reasignado porque su estado es 'EnProgreso'. Solo los casos con estado 'Pendiente' pueden ser reasignados.\",\r\n  \"fechaIntento\": \"2024-01-15T14:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlAPI}}/api/logs-reasignacion/",
+							"host": [
+								"{{urlAPI}}"
+							],
+							"path": [
+								"api",
+								"logs-reasignacion",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

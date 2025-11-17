@@ -1,0 +1,26 @@
+@import '../styles/base.css';
+
+.reportes-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 56px);
+}
+
+.reportes-container .card {
+    border-radius: 8px;
+}
+
+.reportes-container .card-header {
+    border-bottom: 1px solid #dee2e6;
+    font-weight: 600;
+}
+
+.reportes-container h2 {
+    color: #333;
+    font-weight: 600;
+}
+
+.reportes-container .text-muted {
+    color: #6c757d;
+}
+
