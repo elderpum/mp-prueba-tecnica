@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Caso, ICaso } from '../models/Caso';
+import { BitacoraCaso } from '../models/BitacoraCaso';
 
 export class CasoController {
     // GET /casos
@@ -54,7 +55,8 @@ export class CasoController {
         try {
             const casoData: Omit<ICaso, 'id'> = {
                 ...req.body,
-                fechaCreacion: new Date()
+                fechaCreacion: new Date(),
+                fechaActualizacion: new Date()
             };
 
             // Validaciones básicas
@@ -68,6 +70,19 @@ export class CasoController {
 
             const result = await Caso.create(casoData);
 
+            // Crear bitácora de creación
+            try {
+                await BitacoraCaso.create({
+                    CasoId: result.id,
+                    FiscalId: casoData.FiscalId,
+                    accion: 'Creacion',
+                    descripcion: 'Caso creado y asignado al fiscal',
+                    fechaAccion: new Date()
+                });
+            } catch (bitacoraError) {
+                console.error('Error al crear bitácora de creación:', bitacoraError);
+            }
+
             res.status(201).send({
                 success: true,
                 message: 'Caso creado exitosamente',
@@ -76,7 +91,7 @@ export class CasoController {
         } catch (error) {
             res.status(500).send({
                 success: false,
-                message: 'Error al crear fiscal',
+                message: 'Error al crear caso',
                 error: (error as Error).message
             });
         }
@@ -86,7 +101,63 @@ export class CasoController {
     async actualizarRegistro(req: Request, res: Response): Promise<void> {
         try {
             const { id } = req.params;
-            await Caso.update(parseInt(id), req.body);
+            const casoId = parseInt(id);
+            
+            // Obtener el caso anterior para comparar el estado
+            const casoAnterior = await Caso.getById(casoId);
+            if (!casoAnterior) {
+                res.status(404).send({
+                    success: false,
+                    message: 'Caso no encontrado'
+                });
+                return;
+            }
+
+            // Actualizar el caso
+            await Caso.update(casoId, req.body);
+
+            // Obtener el caso actualizado para obtener el FiscalId correcto
+            const casoActualizado = await Caso.getById(casoId);
+            if (!casoActualizado) {
+                res.status(500).send({
+                    success: false,
+                    message: 'Error al obtener caso actualizado'
+                });
+                return;
+            }
+
+            // Usar el FiscalId del caso actualizado
+            const fiscalIdDelCaso = casoActualizado.FiscalId;
+
+            // Determinar si cambió el estado
+            const nuevoEstado = req.body.estado;
+            const estadoCambio = casoAnterior.estado !== nuevoEstado && nuevoEstado !== undefined;
+
+            // Crear bitácora según el tipo de cambio
+            try {
+                if (estadoCambio) {
+                    // Bitácora de cambio de estado
+                    await BitacoraCaso.create({
+                        CasoId: casoId,
+                        FiscalId: fiscalIdDelCaso,
+                        accion: 'CambioEstado',
+                        descripcion: 'Cambio de Estado en el caso. Por favor revisar',
+                        fechaAccion: new Date()
+                    });
+                } else {
+                    // Bitácora de actualización general
+                    await BitacoraCaso.create({
+                        CasoId: casoId,
+                        FiscalId: fiscalIdDelCaso,
+                        accion: 'Actualizacion',
+                        descripcion: 'Se actualizó información importante del caso. Por favor revisar',
+                        fechaAccion: new Date()
+                    });
+                }
+            } catch (bitacoraError) {
+                console.error('Error al crear bitácora:', bitacoraError);
+            }
+
             res.status(200).send({
                 success: true,
                 message: 'Caso actualizado correctamente'
